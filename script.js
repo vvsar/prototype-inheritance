@@ -263,20 +263,20 @@ function addSalad() {
   let n1 = document.getElementById('caesar');
   let n2 = document.getElementById('oliviet');
   if (n1.checked) {
-    size = n1.value;
+    name = n1.value;
   } else {
-    size = n2.value;
+    name = n2.value;
   }
   let amount;
   let a1 = document.getElementById('100');
   let a2 = document.getElementById('150');
   let a3 = document.getElementById('200');
   if (a1.checked) {
-    stuffing = a1.value;
+    amount = a1.value;
   } else if (a2.checked) {
-    stuffing = a2.value;
+    amount = a2.value;
   } else {
-    stuffing = a3.value;
+    amount = a3.value;
   }
   let salad = new Salad(name, amount);
   salad.id = idNumber + 1;
@@ -302,9 +302,9 @@ function addBeverage() {
   let b1 = document.getElementById('cola');
   let b2 = document.getElementById('coffee');
   if (b1.checked) {
-    size = b1.value;
+    name = b1.value;
   } else {
-    size = b2.value;
+    name = b2.value;
   }
   let beverage = new Beverage(name);
   beverage.id = idNumber + 1;
@@ -328,5 +328,11 @@ function addBeverage() {
 function finishOrder() {
   modal3.style.display = "none";
   alert('Thank you for your order! Welcome back!');
-  order.freeze();
+  // order.freeze();
+  tableBody.remove();
+  modal0Content.appendChild(orderTable);
+  idNumber = 0;
+  rowNumber = 0
+  totalPrice = 0;
+  totalEnergy = 0;
 }
