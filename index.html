@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make your order</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Montserrat:wght@400;500;600;800&family=Open+Sans&family=Montserrat+Alternates:wght@800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Menu</h1>
+    <table>
+      <tr>
+        <td></td>
+        <td colspan="3"><h2>Hamburgers</h2></td>
+      </tr>
+      <tr>
+        <td rowspan="2"><span class="rotated">size</span></td>
+        <td>small</td>
+        <td>20 cal</td>
+        <td>&#8366 50</td>
+      </tr>
+      <tr>
+        <td>big</td>
+        <td>40 cal</td>
+        <td>&#8366 50</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="3"><h3>with</h3></td>
+      </tr>
+      <tr>
+        <td rowspan="3"><span class="rotated">stuffings</span></td>
+        <td>cheese</td>
+        <td>20 cal</td>
+        <td>&#8366 10</td>
+      </tr>
+      <tr>
+        <td>salad</td>
+        <td>5 cal</td>
+        <td>&#8366 20</td>
+      </tr>
+      <tr>
+        <td>potato</td>
+        <td>10 cal</td>
+        <td>&#8366 15</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="3"><h2>Salads</h2></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Caesar 100g</td>
+        <td>20 cal</td>
+        <td>&#8366 100</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Oliviet 100g</td>
+        <td>80 cal</td>
+        <td>&#8366 50</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="3"><h2>Beverages</h2></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Cola</td>
+        <td>40 cal</td>
+        <td>&#8366 50</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Coffee</td>
+        <td>20 cal</td>
+        <td>&#8366 80</td>
+      </tr>
+    </table>
+    <button class="make-order-btn">Make your order</button>
+
+    <div class="modal0">
+      <div class="modal0-wrap">
+        <div class="modal-header">
+          <span class="modal-header-text">make your order</span>
+        </div>
+        <div class="modal0-content">
+          <div class="modal0-main">
+            <span class="modal-main-header">Choose hamburger(s):</span>
+            <hr class="modal-main-line">
+            <div class="choose-size">
+              <div class="size-to-choose"> 
+                <input type="radio" id="big" name="size" value="Big" checked>
+                <label for="big">Big</label>
+              </div>
+              <div class="size-to-choose">
+                <input type="radio" id="small" name="size" value="Small">
+                <label for="d20">Small</label>
+              </div>
+            </div>
+            <div class="choose-stuffing">
+              <div class="stuffing-to-choose">
+                <input type="radio" id="cheese" name="stuffing" value="Cheese" checked>
+                <label for="cheese">Cheese</label>
+              </div>
+              <div class="stuffing-to-choose">
+                <input type="radio" id="salad" name="stuffing" value="Salad">
+                <label for="salad">Salad</label>
+              </div>
+              <div class="stuffing-to-choose">
+                <input type="radio" id="potato" name="stuffing" value="Potato">
+                <label for="potato">Potato</label>
+              </div>
+            </div>
+            <div class="number-add-hamburger">
+              <div>
+                <input type="text" id="number-hamburger" maxlength="2" value="">
+                <label for="number-hamburger">number</label>
+              </div>
+              <button class="add-hamburger">add</button>
+            </div>
+            <div class="modal0-footer">
+              <button class="next-to-salad">next</button>
+            </div>
+          </div>
+          <div class="order-table">
+            <table class="table">
+              <caption>your order</caption>
+              <thead>
+                <tr>
+                  <th>item</th>
+                  <th>number</th>
+                  <th>price</th>
+                  <th>energy</th>
+                </tr>
+              </thead>
+              <tbody class="tbody">
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="2">total</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal1">
+      <div class="modal1-wrap">
+        <div class="modal-header">
+          <span class="modal-header-text">make your order</span>
+        </div>
+        <div class="modal1-content">
+          <div class="modal1-main">
+            <span class="modal-main-header">Choose salad(s):</span>
+            <hr class="modal-main-line">
+            <div class="choose-salad">
+              <div class="salad-to-choose">
+                <input type="radio" id="caesar" name="salad" value="Caesar" checked>
+                <label for="caesar">Caesar</label>
+              </div>
+              <div class="salad-to-choose">
+                <input type="radio" id="oliviet" name="salad" value="Oliviet">
+                <label for="oliviet">Oliviet</label>
+              </div>
+            </div>
+            <div class="choose-amount">
+              <div class="amount-to-choose">
+                <input type="radio" id="100" name="amount" value="100" checked>
+                <label for="100">100 g</label>
+              </div>
+              <div class="amount-to-choose">
+                <input type="radio" id="150" name="amount" value="150">
+                <label for="150">150 g</label>
+              </div>
+              <div class="amount-to-choose">
+                <input type="radio" id="200" name="amount" value="200">
+                <label for="200">200 g</label>
+              </div>
+            </div>
+            <div class="number-add-salad">
+              <div>
+                <input type="text" id="number-salad" maxlength="2" value="">
+                <label for="number-salad">number</label>
+              </div>
+              <button class="add-salad">add</button>
+            </div>
+            <div class="modal1-footer">
+              <button class="back-to-hamburger">back</button>
+              <button class="next-to-beverage">next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal2">
+      <div class="modal2-wrap">
+        <div class="modal-header">
+          <span class="modal-header-text">make your order</span>
+        </div>
+        <div class="modal2-content">
+          <div class="modal2-main">
+            <span class="modal-main-header">Choose beverage(s):</span>
+            <hr class="modal-main-line">
+            <div class="choose-beverage">
+              <div class="beverage-to-choose">
+                <input type="radio" id="cola" name="drink" value="Cola" checked>
+                <label for="cola">Cola</label>
+              </div>
+              <div class="beverage-to-choose">
+                <input type="radio" id="coffee" name="drink" value="Coffee">
+                <label for="coffee">Coffee</label>
+              </div>
+            </div>
+            <div class="number-add-beverage">
+              <div>
+                <input type="text" id="number-beverage" maxlength="2" value="">
+                <label for="number-beverage">number</label>
+              </div>
+              <button class="add-beverage">add</button>
+            </div>
+            <div class="modal2-footer">
+              <button class="back-to-salad">back</button>
+              <button class="next-to-payment">check and pay</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal3">
+      <div class="modal3-wrap">
+        <div class="modal-header">
+          <span class="modal-header-text">make your order</span>
+        </div>
+        <div class="modal3-main">
+          <span class="modal-main-header">Check and pay</span>
+          <hr class="modal-main-line">
+        </div>
+        <div class="modal3-footer">
+          <button class="back-to-beverage">back</button>
+          <button class="pay-btn">pay</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
