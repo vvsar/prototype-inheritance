@@ -1,14 +1,14 @@
 class Burger {
-  static SIZE_SMALL = {"price": 50, "energy": 20}
-  static SIZE_BIG = {"price": 100, "energy": 40}
+  SIZE_SMALL = {"price": 50, "energy": 20}
+  SIZE_BIG = {"price": 100, "energy": 40}
   constructor(size) {
     this.size = size;
   }
 }
 class Hamburger extends Burger {
-  static STUFFING_CHEESE = {"price": 10, "energy": 20}
-  static STUFFING_SALAD = {"price": 20, "energy": 5}
-  static STUFFING_POTATO = {"price": 15, "energy": 10}
+  STUFFING_CHEESE = {"price": 10, "energy": 20}
+  STUFFING_SALAD = {"price": 20, "energy": 5}
+  STUFFING_POTATO = {"price": 15, "energy": 10}
   price
   energy
   constructor(size, stuffing) {
@@ -18,9 +18,9 @@ class Hamburger extends Burger {
   calculatePrice() {
     let price_1, price_2;
     if (this.size === 'Small') {
-      price_1 = this.SIZE_SMALL[price];
+      price_1 = this.SIZE_SMALL.price;
     } else {
-      price_1 = this.SIZE_BIG[price];
+      price_1 = this.SIZE_BIG.price;
     }
     if (this.stuffing === 'Cheese') {
       price_2 = this.STUFFING_CHEESE.price;
@@ -51,8 +51,8 @@ class Hamburger extends Burger {
   }
 }
 class Salad {
-  static CAESAR = {"price": 100, "energy": 20}
-  static OLIVIET = {"price": 50, "energy": 80}
+  CAESAR = {"price": 100, "energy": 20}
+  OLIVIET = {"price": 50, "energy": 80}
   price
   energy
   constructor(name, amount) {
@@ -61,24 +61,24 @@ class Salad {
   }
   calculatePrice() {
     if (this.name === 'Caesar') {
-      this.price = this.CAESAR.price;
+      this.price = this.CAESAR.price * this.amount / 100;
     } else {
-      this.price = this.OLIVIET.price;
+      this.price = this.OLIVIET.price * this.amount / 100;
     }
     return this.price;
   }
   calculateEnergy() {
     if (this.name === 'Caesar') {
-      this.energy = this.CAESAR.energy;
+      this.energy = this.CAESAR.energy * this.amount / 100;
     } else {
-      this.energy = this.OLIVIET.energy;
+      this.energy = this.OLIVIET.energy * this.amount / 100;
     }
     return this.energy;
   }
 }
 class Beverage {
-  static COLA = {"price": 50, "energy": 40}
-  static COFFEE = {"price": 80, "energy": 20}
+  COLA = {"price": 50, "energy": 40}
+  COFFEE = {"price": 80, "energy": 20}
   price
   energy
   constructor(name) {
@@ -144,6 +144,10 @@ bNumber.oninput = function() {
 const orderTable = document.querySelector('.order-table');
 const table = document.querySelector('.table');
 const tableBody = document.querySelector('.tbody');
+const totalPriceCell = document.querySelector('.total-price');
+totalPriceCell.innerHTML = '&#8366 0';
+const totalEnergyCell = document.querySelector('.total-energy');
+totalEnergyCell.innerHTML = '0 cal';
 
 // POPUPS
 const modal0 = document.querySelector('.modal0');
@@ -160,8 +164,7 @@ const modal3Main = document.querySelector('.modal3-main');
 
 function startOrder() {
   modal0.style.display = 'block';
-  
-  
+  modal0Content.appendChild(orderTable);
 }
 function next0() {
   modal0.style.display = 'none';
@@ -241,22 +244,24 @@ function addHamburger() {
   }
   let hamburger = new Hamburger(size, stuffing);
   hamburger.id = idNumber + 1;
-  // hamburger.price = Hamburger.prototype.calculatePrice();
-  // hamburger.energy = Hamburger.prototype.calculateEnergy();
+  hamburger.price = hamburger.calculatePrice();
+  hamburger.energy = hamburger.calculateEnergy();
   hamburger.number = +hNumber.value;
-  // totalPrice += (hamburger.price * hamburger.number);
-  // totalEnergy += (hamburger.energy * hamburger.number);
+  totalPrice += (hamburger.price * hamburger.number);
+  totalEnergy += (hamburger.energy * hamburger.number);
   order.push(hamburger);
   rowNumber++;
   let row = table.insertRow(rowNumber);
-  let sell1 = row.insertCell(0);
-  let sell2 = row.insertCell(1);
-  let sell3 = row.insertCell(2);
-  let sell4 = row.insertCell(3);
-  sell1.innerHTML = `${size} hamburger with ${stuffing}`;
-  sell2.innerHTML = hNumber.value;
-  sell3.innerHTML = '';
-  sell4.innerHTML = '';
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+  let cell4 = row.insertCell(3);
+  cell1.innerHTML = `${size} hamburger with ${stuffing}`;
+  cell2.innerHTML = hNumber.value;
+  cell3.innerHTML = `&#8366 ${hamburger.price * hamburger.number}`;
+  cell4.innerHTML = `${hamburger.energy * hamburger.number} cal`;
+  totalPriceCell.innerHTML = `&#8366 ${totalPrice}`;
+  totalEnergyCell.innerHTML = `${totalEnergy} cal`;
 }
 function addSalad() {
   let name; 
@@ -280,22 +285,24 @@ function addSalad() {
   }
   let salad = new Salad(name, amount);
   salad.id = idNumber + 1;
-  // salad.price = Salad.prototype.calculatePrice();
-  // salad.energy = Salad.prototype.calculateEnergy();
+  salad.price = salad.calculatePrice();
+  salad.energy = salad.calculateEnergy();
   salad.number = +sNumber.value;
-  // totalPrice += (salad.price * salad.number);
-  // totalEnergy += (salad.energy * salad.number);
+  totalPrice += (salad.price * salad.number);
+  totalEnergy += (salad.energy * salad.number);
   order.push(salad);
   rowNumber++;
   let row = table.insertRow(rowNumber);
-  let sell1 = row.insertCell(0);
-  let sell2 = row.insertCell(1);
-  let sell3 = row.insertCell(2);
-  let sell4 = row.insertCell(3);
-  sell1.innerHTML = `${name} - ${amount} g`;
-  sell2.innerHTML = sNumber.value;
-  sell3.innerHTML = '';
-  sell4.innerHTML = '';
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+  let cell4 = row.insertCell(3);
+  cell1.innerHTML = `${name} - ${amount} g`;
+  cell2.innerHTML = sNumber.value;
+  cell3.innerHTML = `&#8366 ${salad.price * salad.number}`;
+  cell4.innerHTML = `${salad.energy * salad.number} cal`;
+  totalPriceCell.innerHTML = `&#8366 ${totalPrice}`;
+  totalEnergyCell.innerHTML = `${totalEnergy} cal`;
 }
 function addBeverage() {
   let name; 
@@ -308,22 +315,24 @@ function addBeverage() {
   }
   let beverage = new Beverage(name);
   beverage.id = idNumber + 1;
-  // beverage.price = Beverage.prototype.calculatePrice();
-  // beverage.energy = Beverage.prototype.calculateEnergy();
+  beverage.price = beverage.calculatePrice();
+  beverage.energy = beverage.calculateEnergy();
   beverage.number = +bNumber.value;
-  // totalPrice += (beverage.price * beverage.number);
-  // totalEnergy += (beverage.energy * beverage.number);
+  totalPrice += (beverage.price * beverage.number);
+  totalEnergy += (beverage.energy * beverage.number);
   order.push(beverage);
   rowNumber++;
   let row = table.insertRow(rowNumber);
-  let sell1 = row.insertCell(0);
-  let sell2 = row.insertCell(1);
-  let sell3 = row.insertCell(2);
-  let sell4 = row.insertCell(3);
-  sell1.innerHTML = `${name}`;
-  sell2.innerHTML = bNumber.value;
-  sell3.innerHTML = '';
-  sell4.innerHTML = '';
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+  let cell4 = row.insertCell(3);
+  cell1.innerHTML = `${name}`;
+  cell2.innerHTML = bNumber.value;
+  cell3.innerHTML = `&#8366 ${beverage.price * beverage.number}`;
+  cell4.innerHTML = `${beverage.energy * beverage.number} cal`;
+  totalPriceCell.innerHTML = `&#8366 ${totalPrice}`;
+  totalEnergyCell.innerHTML = `${totalEnergy} cal`;
 }
 function finishOrder() {
   modal3.style.display = "none";
@@ -335,4 +344,9 @@ function finishOrder() {
   rowNumber = 0
   totalPrice = 0;
   totalEnergy = 0;
+  hNumber.value = '';
+  sNumber.value = '';
+  bNumber.value = '';
+  totalPriceCell.innerHTML = '&#8366 0';
+  totalEnergyCell.innerHTML = '0 cal';
 }
